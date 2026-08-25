@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EagleEye Labs LLC — Native iPhone app development focused on performance, privacy, and practical tools." />
+  <meta name="theme-color" content="#0a0f1c" />
+  <title>EagleEye Labs LLC — Native iPhone App Development</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0a0f1c;
+      --bg-elevated: #111827;
+      --bg-card: #151c2c;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --accent-soft: rgba(59, 130, 246, 0.12);
+      --success: #22c55e;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --max-width: 1120px;
+      --header-height: 72px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ========== LAYOUT ========== */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(10, 15, 28, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      font-size: 0.925rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-size: 0.925rem;
+      font-weight: 600;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 0.875rem;
+    }
+
+    /* Mobile menu */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      padding-top: calc(var(--header-height) + 80px);
+      padding-bottom: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      max-width: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero-lead {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .stat span {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== SECTION COMMON ========== */
+    .section-header {
+      max-width: 560px;
+      margin-bottom: 56px;
+    }
+
+    .section-header h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* ========== SERVICES ========== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .service-card:hover {
+      border-color: rgba(59, 130, 246, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--accent-soft);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ========== ABOUT ========== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-size: 1.05rem;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 28px;
+    }
+
+    .about-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.975rem;
+    }
+
+    .about-list li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .about-visual {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      position: relative;
+    }
+
+    .about-visual-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .feature-pill {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .feature-pill .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .feature-pill strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .feature-pill span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== PROJECT ========== */
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .project-info {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+
+    .project-info h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .project-info p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .meta-chip {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 999px;
+    }
+
+    .project-visual {
+      background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px;
+      min-height: 320px;
+    }
+
+    .phone-mock {
+      width: 200px;
+      height: 400px;
+      background: #0f172a;
+      border-radius: 32px;
+      border: 3px solid #334155;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch {
+      height: 28px;
+      background: #0f172a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .phone-notch span {
+      width: 60px;
+      height: 6px;
+      background: #1e293b;
+      border-radius: 4px;
+    }
+
+    .phone-screen {
+      flex: 1;
+      background: linear-gradient(180deg, #1e3a5f 0%, #0f172a 100%);
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .screen-header {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #93c5fd;
+      letter-spacing: 0.04em;
+    }
+
+    .screen-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .screen-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .screen-card .label {
+      font-size: 0.65rem;
+      color: #94a3b8;
+      margin-bottom: 4px;
+    }
+
+    .screen-card .value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* ========== PROCESS ========== */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding-top: 12px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: rgba(59, 130, 246, 0.25);
+      display: block;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========== CTA ========== */
+    .cta {
+      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%);
+      border-radius: var(--radius-lg);
+      padding: 64px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .cta p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.1rem;
+      max-width: 480px;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+
+    .cta .btn-primary {
+      background: white;
+      color: #1e40af;
+      position: relative;
+    }
+
+    .cta .btn-primary:hover {
+      background: #f1f5f9;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .logo {
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 280px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.925rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .about-grid,
+      .project-card {
+        grid-template-columns: 1fr;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .project-visual {
+        min-height: 280px;
+        order: -1;
+      }
+    }
+
+    @media (max-width: 700px) {
+      nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        padding: 48px 28px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      section {
+        padding: 72px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">EE</span>
+        EagleEye Labs
+      </a>
+
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#contact" class="btn btn-primary btn-sm">Get in Touch</a>
+      </nav>
+
+      <button class="menu-toggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">Native iOS Development</div>
+        <h1>We build iPhone apps that are fast, private, and built to last.</h1>
+        <p class="hero-lead">
+          EagleEye Labs is an independent studio specializing in native iOS applications. 
+          We focus on clean architecture, excellent user experience, and practical tools that people actually use.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Start a Project</a>
+          <a href="#work" class="btn btn-outline">View Our Work</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>Native</strong>
+            <span>Swift &amp; SwiftUI first</span>
+          </div>
+          <div class="stat">
+            <strong>Private</strong>
+            <span>On-device by design</span>
+          </div>
+          <div class="stat">
+            <strong>Focused</strong>
+            <span>No unnecessary complexity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>What we do</h2>
+        <p>End-to-end native iPhone app development with a strong emphasis on performance, privacy, and long-term maintainability.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">◈</div>
+          <h3>Native iOS Development</h3>
+          <p>Swift and SwiftUI applications built for performance and reliability. We take full advantage of Apple’s frameworks and design guidelines.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">◎</div>
+          <h3>Product Discovery &amp; Design</h3>
+          <p>We start with clear goals, user needs, and prioritization. Prototypes and iterative testing keep the product focused and useful.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⬡</div>
+          <h3>Architecture &amp; Security</h3>
+          <p>Clean architecture, secure data handling, and privacy-first design. We build apps that are maintainable and trustworthy.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">◉</div>
+          <h3>API Integration</h3>
+          <p>Reliable backend connectivity, third-party services, and data synchronization when the product requires it.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">▣</div>
+          <h3>Testing &amp; Quality</h3>
+          <p>Automated testing, continuous integration, and performance monitoring so releases stay stable and predictable.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">⬡</div>
+          <h3>Launch &amp; Support</h3>
+          <p>App Store preparation, submission, and ongoing updates. We stay involved after launch to keep the product healthy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section id="about" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Built for people who care about the details</h2>
+          <p>
+            EagleEye Labs is a focused development studio. We work on native iPhone applications where quality, privacy, and usability matter more than flashy feature lists.
+          </p>
+          <p>
+            Whether it’s a statistics tracker, a health tool, or a utility app, we aim for products that feel polished, perform well, and respect the user’s data.
+          </p>
+
+          <ul class="about-list">
+            <li>Native Swift &amp; SwiftUI development</li>
+            <li>Privacy-first and on-device architectures</li>
+            <li>Clean, maintainable codebases</li>
+            <li>Direct communication and clear process</li>
+          </ul>
+        </div>
+
+        <div class="about-visual">
+          <div class="about-visual-inner">
+            <div class="feature-pill">
+              <span class="dot"></span>
+              <div>
+                <strong>Performance focused</strong>
+                <span>Optimized for responsiveness and battery life</span>
+              </div>
+            </div>
+            <div class="feature-pill">
+              <span class="dot"></span>
+              <div>
+                <strong>Privacy by design</strong>
+                <span>Minimize data collection and keep processing local when possible</span>
+              </div>
+            </div>
+            <div class="feature-pill">
+              <span class="dot"></span>
+              <div>
+                <strong>Long-term thinking</strong>
+                <span>Architecture that supports future updates without rewrites</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WORK ========== -->
+  <section id="work">
+    <div class="container">
+      <div class="section-header">
+        <h2>Selected work</h2>
+        <p>Apps we’ve designed and shipped.</p>
+      </div>
+
+      <div class="project-card">
+        <div class="project-info">
+          <span class="project-tag">Featured App</span>
+          <h3>EagleEye Golf</h3>
+          <p>
+            A private, on-device golf statistics tracker available on the App Store. 
+            Built for players who want clean performance tracking without subscriptions or cloud lock-in.
+          </p>
+          <div class="project-meta">
+            <span class="meta-chip">iOS</span>
+            <span class="meta-chip">Swift</span>
+            <span class="meta-chip">On-device</span>
+            <span class="meta-chip">App Store</span>
+          </div>
+          <a href="https://apps.apple.com/app/id6793305657" class="btn btn-outline btn-sm" target="_blank" rel="noopener">
+            View on App Store →
+          </a>
+        </div>
+
+        <div class="project-visual">
+          <div class="phone-mock">
+            <div class="phone-notch"><span></span></div>
+            <div class="phone-screen">
+              <div class="screen-header">EAGLEEYE GOLF</div>
+              <div class="screen-title">Round Stats</div>
+              <div class="screen-card">
+                <div class="label">Handicap Index</div>
+                <div class="value">12.4</div>
+              </div>
+              <div class="screen-card">
+                <div class="label">Last Round</div>
+                <div class="value">78</div>
+              </div>
+              <div class="screen-card">
+                <div class="label">Fairways Hit</div>
+                <div class="value">64%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROCESS ========== -->
+  <section id="process" style="background: var(--bg-elevated);">
+    <div class="container">
+      <div class="section-header">
+        <h2>How we work</h2>
+        <p>A clear, collaborative process from idea to App Store.</p>
+      </div>
+
+      <div class="process-steps">
+        <div class="step">
+          <h3>Discover</h3>
+          <p>We clarify goals, users, constraints, and success metrics before writing a single line of code.</p>
+        </div>
+        <div class="step">
+          <h3>Design</h3>
+          <p>Wireframes and high-fidelity prototypes. We refine the experience until it feels right.</p>
+        </div>
+        <div class="step">
+          <h3>Build</h3>
+          <p>Native development with clean architecture, testing, and regular progress updates.</p>
+        </div>
+        <div class="step">
+          <h3>Launch &amp; Iterate</h3>
+          <p>App Store submission, monitoring, and continued improvement based on real usage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section id="contact">
+    <div class="container">
+      <div class="cta">
+        <h2>Ready to build something solid?</h2>
+        <p>Tell us about your idea. We’ll respond with clear next steps and an honest assessment of scope.</p>
+        <a href="mailto:hello@eagleeyelabs.org" class="btn btn-primary">hello@eagleeyelabs.org</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-mark">EE</span>
+            EagleEye Labs
+          </a>
+          <p>Native iPhone app development focused on performance, privacy, and practical tools.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+          </div>
+          <div class="footer-col">
+            <h4>Services</h4>
+            <a href="#services">iOS Development</a>
+            <a href="#services">Product Design</a>
+            <a href="#services">App Store Launch</a>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <a href="mailto:hello@eagleeyelabs.org">hello@eagleeyelabs.org</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 EagleEye Labs LLC. All rights reserved.</span>
+        <span>Virginia, United States</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
