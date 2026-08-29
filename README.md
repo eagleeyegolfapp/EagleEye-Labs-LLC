@@ -2,9 +2,14 @@
 
 Company site for EagleEye Labs LLC.
 
+- Company: [https://eagleeyelabsllc.com/](https://eagleeyelabsllc.com/)
+- Golf app: [https://eagleeyelabsllc.com/golf/](https://eagleeyelabsllc.com/golf/)
+
 Repo: [eagleeyegolfapp/EagleEye-Labs-LLC](https://github.com/eagleeyegolfapp/EagleEye-Labs-LLC)
 
-GitHub Pages is already on for this repo. Custom domain currently set in Pages settings: `eagleeyelabs.org`.
+The product marketing site lives in `golf/` on this domain so it is not a `github.io` URL.
+
+GitHub Pages custom domain: `eagleeyelabsllc.com`.
 
 ## Point eagleeyelabsllc.com (Squarespace)
 
