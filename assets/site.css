@@ -235,6 +235,24 @@ h1 {
 }
 .product p { color: var(--muted); margin: 0 0 22px; max-width: 36rem; }
 
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.shots figure { margin: 0; }
+.shots .device {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 auto;
+}
+.shots figcaption {
+  text-align: center;
+  color: var(--dim);
+  font-size: 0.82rem;
+  margin-top: 10px;
+}
+
 .phones {
   display: flex;
   justify-content: center;
@@ -350,7 +368,7 @@ article.legal li { margin: 0.38rem 0; }
 .site-footer a:hover { color: var(--gold); }
 
 @media (max-width: 960px) {
-  .product, .grid-2, .proof { grid-template-columns: 1fr; }
+  .product, .grid-2, .proof, .shots { grid-template-columns: 1fr; }
   .phones .device.back { display: none; }
   .phones { justify-content: center; }
   .nav .hide-sm { display: none; }
